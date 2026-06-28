@@ -1,0 +1,95 @@
+# Cough Analysis System (Menu Version)
+
+symptoms = {
+    1: "Dry cough",
+    2: "Wet cough (producing mucus/phlegm)",
+    3: "Scratchy throat",
+    4: "Chest congestion",
+    5: "Runny nose",
+    6: "Fever",
+    7: "Difficulty breathing",
+    8: "Chest pain",
+    9: "Blood when coughing",
+    10: "Persistent cough (more than 3 weeks)"
+}
+
+print("=" * 50)
+print("        COUGH ANALYSIS SYSTEM")
+print("=" * 50)
+
+print("\nSelect all symptoms you are experiencing.")
+print("Separate multiple choices with commas.\n")
+
+for number, symptom in symptoms.items():
+    print(f"{number}. {symptom}")
+
+choices = input("\nEnter your choices (e.g. 1,3,6): ")
+
+selected = []
+
+try:
+    for choice in choices.split(","):
+        selected.append(symptoms[int(choice.strip())])
+except:
+    print("Invalid input.")
+    exit()
+
+print("\nSymptoms Selected:")
+for symptom in selected:
+    print("-", symptom)
+
+# Emergency check
+if ("Difficulty breathing" in selected or
+    "Chest pain" in selected or
+    "Blood when coughing" in selected):
+    print("\n⚠ EMERGENCY WARNING")
+    print("Seek immediate medical attention.")
+    exit()
+
+# Dry cough analysis
+if "Dry cough" in selected:
+    print("\nLikely Cough Type: DRY COUGH")
+
+    print("\nRecommended Home Remedies:")
+    print("- Drink warm fluids")
+    print("- Honey (if over 1 year old)")
+    print("- Gargle warm salt water")
+    print("- Use a humidifier")
+
+    print("\nCommon Over-the-Counter Medicines:")
+    print("- Dextromethorphan cough syrup")
+    print("- Throat lozenges")
+    print("- Honey-based cough syrup")
+
+# Wet cough analysis
+elif "Wet cough (producing mucus/phlegm)" in selected:
+    print("\nLikely Cough Type: WET COUGH")
+
+    print("\nRecommended Home Remedies:")
+    print("- Drink plenty of water")
+    print("- Inhale steam")
+    print("- Get enough rest")
+
+    print("\nCommon Over-the-Counter Medicines:")
+    print("- Guaifenesin expectorant")
+    print("- Saline nasal spray (if congested)")
+
+else:
+    print("\nUnable to determine the cough type.")
+    print("Please consult a healthcare professional.")
+
+# Fever advice
+if "Fever" in selected:
+    print("\nAdditional Advice:")
+    print("- Rest well.")
+    print("- Stay hydrated.")
+    print("- Consider paracetamol if appropriate.")
+
+# Persistent cough advice
+if "Persistent cough (more than 3 weeks)" in selected:
+    print("\nYour cough has lasted longer than expected.")
+    print("Please arrange an appointment with a healthcare professional.")
+
+print("\nDISCLAIMER")
+print("This program is for educational purposes only.")
+print("It cannot diagnose illness or replace professional medical advice.")
